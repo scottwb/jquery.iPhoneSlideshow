@@ -85,6 +85,22 @@
         $this.append(gloss);
     }
 
+    function scheduleNextSlide($this) {
+        var data = $this.data(PLUGIN_NAME);
+        var opts = data.opts;
+        if (!data.paused) {
+            data.timer = setTimeout(
+                function(){
+                    showNextSlide($this);
+                },
+                opts.interval
+            );
+        }
+        else {
+            data.timer = null;
+        }
+    }
+
     function showNextSlide($this) {
         var data       = $this.data(PLUGIN_NAME);
         var opts       = data.opts;
@@ -94,24 +110,23 @@
             if (++data.currentScreen >= numScreens) {
                 data.currentScreen = 0;
             }
-            data.screenImage.fadeOut('slow', function() {
-                data.screenImage.attr('src', opts.screens[data.currentScreen])
-                                .fadeIn('slow', function() {
-                                    if (!data.paused) {
-                                        data.timer = setTimeout(
-                                            function(){
-                                                showNextSlide($this);
-                                            },
-                                            opts.interval
-                                        );
-                                    }
-                                    else {
-                                        data.timer = null;
-                                    }
-                                });
-            });
+            transitions[opts.transition]($this);
         }
     }
+
+    var transitions = {
+        fade : function($this) {
+            var data = $this.data(PLUGIN_NAME);
+            var opts = data.opts;
+
+            data.screenImage.fadeOut('slow', function() {
+                data.screenImage.attr('src', opts.screens[data.currentScreen]);
+                data.screenImage.fadeIn('slow', function() {
+                    scheduleNextSlide($this);
+                });
+            });
+        }
+    };
 
 
     ////////////////////////////////////////////////////////////
@@ -218,6 +233,9 @@
 
         // Time interval between screen transitions (in milliseconds).
         interval : 5000,
+
+        // Type of transition to use between slides.
+        transition : 'fade',
 
         // Array of URLs to the images for all the iPhone screens to show.
         screens : []
