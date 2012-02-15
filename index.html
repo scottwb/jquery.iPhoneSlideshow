@@ -22,24 +22,20 @@
           First, you'll need to make sure to load <code>jQuery</code> and
           <code>jQuery.iPhoneSlideshow.js</code> in the
           <code>&lt;head&gt;</code> of your page, e,g.:
-        <pre>
-&lt;script src="jquery-1.6.js"
+        <pre>&lt;script src="jquery-1.6.js"
         type="text/javascript"&gt;&lt;/script&gt;
 &lt;script src="jquery.iPhoneSlideshow.js"
-        type="text/javascript"&gt;&lt;/script&gt;
-        </pre>
+        type="text/javascript"&gt;&lt;/script&gt;</pre>
         <p>Next, add an empty div with an ID you can refer to, e.g.:</p>
         <pre>&lt;div id="iphone"&gt;&lt;/div&gt;</pre>
         <p>Then add a javascript call to specify the set of screenshot images, like so:</p>
-        <pre>
-$('#iphone').iPhoneSlideshow({
+        <pre>$('#iphone').iPhoneSlideshow({
   screens : [
     'screen1.png',
     'screen2.png',
     'screen3.png'
   ]
-});
-        </pre>
+});</pre>
       </div>
       <div id="iphone"></div>
       <hr/>
