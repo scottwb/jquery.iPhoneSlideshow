@@ -125,6 +125,25 @@
                     scheduleNextSlide($this);
                 });
             });
+        },
+
+        crossfade : function($this) {
+            var data = $this.data(PLUGIN_NAME);
+            var opts = data.opts;
+
+            var nextScreenImage = $("<img src='" + opts.screens[data.currentScreen] + "' border='0'/>").css({
+                "position" : "absolute",
+                "left"     : opts.screenLeft + 'px',
+                "top"      : opts.screenTop + 'px',
+                "width"    : opts.screenWidth + 'px',
+                "height"   : opts.screenHeight + 'px'
+            });
+            $this.prepend(nextScreenImage);
+            data.screenImage.fadeOut('slow', function() {
+                data.screenImage.remove();
+                data.screenImage = nextScreenImage;
+                scheduleNextSlide($this);
+            });
         }
     };
 
@@ -235,6 +254,9 @@
         interval : 5000,
 
         // Type of transition to use between slides.
+        // Supported values:
+        //    'fade'
+        //    'crossfade'
         transition : 'fade',
 
         // Array of URLs to the images for all the iPhone screens to show.
