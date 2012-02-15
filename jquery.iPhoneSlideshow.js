@@ -62,15 +62,25 @@
         var data = $this.data(PLUGIN_NAME);
         var opts = data.opts;
 
-        data.screenImage = $("<img border='0'/>").css({
-            "display"  : "none",
+        data.screenArea = $("<div class='.iphoneScreen'></div>").css({
             "position" : "absolute",
             "left"     : opts.screenLeft + 'px',
             "top"      : opts.screenTop + 'px',
             "width"    : opts.screenWidth + 'px',
+            "height"   : opts.screenHeight + 'px',
+            "overflow" : "hidden"
+        });
+        $this.append(data.screenArea);
+
+        data.screenImage = $("<img border='0'/>").css({
+            "display"  : "none",
+            "position" : "absolute",
+            "left"     : "0px",
+            "top"      : "0px",
+            "width"    : opts.screenWidth + 'px',
             "height"   : opts.screenHeight + 'px'
         });
-        $this.append(data.screenImage);
+        data.screenArea.append(data.screenImage);
     }
 
     function setupGlossImage($this) {
@@ -125,6 +135,51 @@
                     scheduleNextSlide($this);
                 });
             });
+        },
+
+        crossfade : function($this) {
+            var data = $this.data(PLUGIN_NAME);
+            var opts = data.opts;
+
+            var nextScreenImage = $("<img src='" + opts.screens[data.currentScreen] + "' border='0'/>").css({
+                "position" : "absolute",
+                "left"     : '0px',
+                "top"      : '0px',
+                "width"    : opts.screenWidth + 'px',
+                "height"   : opts.screenHeight + 'px'
+            });
+            data.screenArea.prepend(nextScreenImage);
+            data.screenImage.fadeOut('slow', function() {
+                data.screenImage.remove();
+                data.screenImage = nextScreenImage;
+                scheduleNextSlide($this);
+            });
+        },
+
+        'slide' : function($this) {
+            var data = $this.data(PLUGIN_NAME);
+            var opts = data.opts;
+
+            var nextScreenImage = $("<img src='" + opts.screens[data.currentScreen] + "' border='0'/>").css({
+                "position" : "absolute",
+                "left"     : opts.screenWidth + 'px',
+                "top"      : "0px",
+                "width"    : opts.screenWidth + 'px',
+                "height"   : opts.screenHeight + 'px'
+            });
+            data.screenArea.append(nextScreenImage);
+            data.screenArea.animate(
+                {scrollLeft : opts.screenWidth},
+                'slow',
+                'swing',
+                function() {
+                    data.screenImage.remove();
+                    data.screenImage = nextScreenImage;
+                    data.screenArea.scrollLeft(0);
+                    data.screenImage.css({'left' : '0px'});
+                    scheduleNextSlide($this);
+                }
+            );
         }
     };
 
@@ -235,7 +290,11 @@
         interval : 5000,
 
         // Type of transition to use between slides.
-        transition : 'fade',
+        // Supported values:
+        //    'fade'
+        //    'crossfade',
+        //    'slide'
+        transition : 'slide',
 
         // Array of URLs to the images for all the iPhone screens to show.
         screens : []
