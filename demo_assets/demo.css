@@ -1,0 +1,63 @@
+body {
+    font-family: Gill Sans, Gill Sans MT, sans-serif;
+    font-size: 18px;
+    color: #464B4C;
+}
+
+#content {
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: normal;
+    text-align: center;
+}
+
+code {
+    font-family: monaco, courier, monospace;
+    font-size: 14px;
+    background-color: #eee;
+    border: solid #ddd 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+pre {
+    font-family: monaco, courier, monospace;
+    font-size: 14px;
+}
+
+.left {
+    float: left;
+    width: 350px;
+}
+
+.left pre {
+    border-sizing: border-box;
+    max-width: 100%;
+    background-color: #eee;
+    border: solid #ddd 1px;
+    padding: 5px;
+}
+
+.right {
+    float: right;
+    width: 484px;
+}
+
+#iphone {
+    float: right;
+    width: 484px;
+    height: 506px;
+    margin-top: 100px;
+}
+
+hr {
+    clear: both;
+}
+
+
+
