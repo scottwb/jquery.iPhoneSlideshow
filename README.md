@@ -1,1 +1,3 @@
-TODO: Write the README
+See the [Demo Page](http://scottwb.com/jquery.iPhoneSlideshow/).
+
+More details coming soon...
