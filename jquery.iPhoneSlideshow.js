@@ -85,6 +85,22 @@
         $this.append(gloss);
     }
 
+    function scheduleNextSlide($this) {
+        var data = $this.data(PLUGIN_NAME);
+        var opts = data.opts;
+        if (!data.paused) {
+            data.timer = setTimeout(
+                function(){
+                    showNextSlide($this);
+                },
+                opts.interval
+            );
+        }
+        else {
+            data.timer = null;
+        }
+    }
+
     function showNextSlide($this) {
         var data       = $this.data(PLUGIN_NAME);
         var opts       = data.opts;
@@ -95,20 +111,10 @@
                 data.currentScreen = 0;
             }
             data.screenImage.fadeOut('slow', function() {
-                data.screenImage.attr('src', opts.screens[data.currentScreen])
-                                .fadeIn('slow', function() {
-                                    if (!data.paused) {
-                                        data.timer = setTimeout(
-                                            function(){
-                                                showNextSlide($this);
-                                            },
-                                            opts.interval
-                                        );
-                                    }
-                                    else {
-                                        data.timer = null;
-                                    }
-                                });
+                data.screenImage.attr('src', opts.screens[data.currentScreen]);
+                data.screenImage.fadeIn('slow', function() {
+                    scheduleNextSlide($this);
+                });
             });
         }
     }
