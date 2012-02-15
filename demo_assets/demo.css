@@ -53,14 +53,14 @@ pre {
     float: right;
     width: 484px;
     height: 506px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 hr {
     clear: both;
 }
 
-button {
+a.button, button {
     text-indent: 0px;
     word-spacing: normal;
     letter-spacing: normal;
@@ -89,6 +89,7 @@ button {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+    text-decoration: none;
     color: white !important;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.39);
     -webkit-font-smoothing: antialiased;
@@ -99,13 +100,13 @@ button::-moz-focus-inner {
     padding: 0;
 }
 
-button:hover {
+a.button:hover, button:hover {
     background-position: 0 -15px;
     text-decoration: none;
     cursor: pointer;
 }
 
-button.green {
+a.button.green, button.green {
     background-color: hsl(116, 100%, 19%) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="hsl(116, 100%, 43%)", endColorStr="hsl(116, 100%, 19%)");
     background-repeat: repeat-x;
@@ -119,7 +120,7 @@ button.green {
     border-color: hsl(116, 100%, 19%) hsl(116, 100%, 19%) hsl(116, 100%, 13%);
 }
 
-button.red {
+a.button.red, button.red {
     background-color: hsl(360, 64%, 35%) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="hsl(360, 64%, 59%)", endColorStr="hsl(360, 64%, 35%)");
     background-repeat: repeat-x;
@@ -131,4 +132,20 @@ button.red {
     background-image: -o-linear-gradient(top, hsl(360, 64%, 59%), hsl(360, 64%, 35%));
     background-image: linear-gradient(hsl(360, 64%, 59%), hsl(360, 64%, 35%));
     border-color: hsl(360, 64%, 35%) hsl(360, 64%, 35%) hsl(360, 64%, 29%);
+}
+
+a.button.gray, button.gray {
+    background-color: hsl(0, 0%, 79%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="hsl(0, 0%, 121%)", endColorStr="hsl(0, 0%, 79%)");
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(hsl(0, 0%, 121%)), to(hsl(0, 0%, 79%)));
+    background-image: -moz-linear-gradient(top, hsl(0, 0%, 121%), hsl(0, 0%, 79%));
+    background-image: -ms-linear-gradient(top, hsl(0, 0%, 121%), hsl(0, 0%, 79%));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, hsl(0, 0%, 121%)), color-stop(100%, hsl(0, 0%, 79%)));
+    background-image: -webkit-linear-gradient(top, hsl(0, 0%, 121%), hsl(0, 0%, 79%));
+    background-image: -o-linear-gradient(top, hsl(0, 0%, 121%), hsl(0, 0%, 79%));
+    background-image: linear-gradient(hsl(0, 0%, 121%), hsl(0, 0%, 79%));
+    border-color: hsl(0, 0%, 79%) hsl(0, 0%, 79%) hsl(0, 0%, 68.5%);
+    color: #333 !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.69);
 }
