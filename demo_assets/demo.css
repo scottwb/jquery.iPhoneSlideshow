@@ -28,6 +28,7 @@ code {
 pre {
     font-family: monaco, courier, monospace;
     font-size: 14px;
+    overflow-x: auto;
 }
 
 .left {
